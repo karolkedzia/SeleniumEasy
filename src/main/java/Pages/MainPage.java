@@ -20,14 +20,14 @@ public class MainPage extends BasePage {
         return this;
     }
 
-    public void clickInputForms() {
-        moveViewToElementAccordingCoordinates(driver.findElement(By.cssSelector("#treemenu > li > ul > li:nth-child(7) > a")));
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void clickInputForms() {
+//        moveViewToElementAccordingCoordinates(driver.findElement(By.cssSelector("#treemenu > li > ul > li:nth-child(7) > a")));
+//
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 }
