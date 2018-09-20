@@ -14,7 +14,7 @@ public class BaseTest {
     private WebDriverFactory webDriverFactory;
     protected MainPage mainPage;
     protected ListPage listPage;
-    protected WorkSpacePage workspacePage;
+    protected WorkSpacePage workSpacePage;
 
     @BeforeMethod
     @Parameters(("browser"))
@@ -24,7 +24,7 @@ public class BaseTest {
 
         mainPage = new MainPage(driver);
         listPage = new ListPage(driver);
-        workspacePage = new WorkSpacePage(driver);
+        workSpacePage = new WorkSpacePage(driver);
     }
 
     @AfterMethod

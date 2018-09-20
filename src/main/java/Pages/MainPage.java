@@ -1,6 +1,5 @@
 package Pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,9 +14,13 @@ public class MainPage extends BasePage {
         super(driver);
     }
 
-        public MainPage goToSeleniumMainPage() {
+    public MainPage goToSeleniumMainPage() {
         driver.get("http://www.seleniumeasy.com/test/");
         return this;
+    }
+
+    public ListPage getListPage() {
+        return new ListPage(driver);
     }
 
 //    public void clickInputForms() {

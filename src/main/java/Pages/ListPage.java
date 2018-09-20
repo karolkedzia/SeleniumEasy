@@ -16,17 +16,19 @@ public class ListPage extends BasePage {
         super(driver);
     }
 
-    public void clickOnInputForms() {
+    public ListPage clickOnInputForms() {
         inputForms.click();
+        return this;
     }
 
-    public void clickOnSimpleFormDemo() {
+    public ListPage clickOnSimpleFormDemo() {
         simpleFormDemo.click();
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waiter.wait(5000);
+        return this;
     }
+
+    public WorkSpacePage getWorkSpacePage() {
+        return new WorkSpacePage(driver);
+    }
+
 }
