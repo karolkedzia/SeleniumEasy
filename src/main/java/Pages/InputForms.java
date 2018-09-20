@@ -51,6 +51,46 @@ public class InputForms extends BasePage {
     @FindBy(id = "check1")
     private WebElement checkButton;
 
+    @FindBy(xpath = "//*[@id=\"easycont\"]/div/div[2]/div[1]/div[2]/label[1]")
+    private WebElement radioButtonMale;
+
+    @FindBy(xpath = "//*[@id=\"easycont\"]/div/div[2]/div[1]/div[2]/label[2]")
+    private WebElement radioButtonFemale;
+
+    @FindBy(xpath = "//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/div[1]/label[1]")
+    private WebElement radioButtonSexMale;
+
+    @FindBy(xpath = "//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/div[1]/label[2")
+    private WebElement radioButtonSexFemale;
+
+    @FindBy(id = "buttoncheck")
+    private WebElement radioButtonGet;
+
+    @FindBy(className = "radiobutton")
+    private WebElement radioButtonMessage;
+
+    @FindBy(xpath = "//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/button")
+    private WebElement getValueButton;
+
+    @FindBy(xpath = "//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/div[2]/label[1]")
+    private WebElement ageGroup0to5;
+
+    @FindBy(xpath = "//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/div[2]/label[2]")
+    private WebElement ageGroup5to15;
+
+    @FindBy(xpath = "//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/div[2]/label[3]")
+    private WebElement ageGroup15to50;
+
+    @FindBy(xpath = "//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/p[2]/text()[1]")
+    private WebElement SexValue;
+
+    @FindBy(css = "//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/p[2]/text()[2]")
+    private WebElement AgeGroupeValue;
+
+    @FindBy(className = "groupradiobutton")
+    private WebElement SexAndAgeMessage;
+
+
     private String sentMessage;
 
     public InputForms(WebDriver driver) {
@@ -135,47 +175,95 @@ public class InputForms extends BasePage {
         return this;
     }
 
+    //Exercise 5 - Radio Buttons Demo /
+
+    public InputForms clickRadioButtonMale() {
+        radioButtonMale.click();
+        return this;
+    }
+
+    public InputForms clickRadioButtonFemale() {
+        radioButtonFemale.click();
+        return this;
+    }
+
+    public InputForms clickRadioButtoGet() {
+        radioButtonGet.click();
+        return this;
+    }
+
+    public InputForms clickRadioButtonSexMale() {
+        radioButtonSexMale.click();
+        return this;
+    }
+
+    public InputForms clickRadioButtonSexFemale() {
+        radioButtonSexFemale.click();
+        return this;
+    }
+
+    public InputForms clickGetValuesButton() {
+        getValueButton.click();
+        return this;
+    }
+
+    public InputForms clickAgeGroup0to5() {
+        ageGroup0to5.click();
+        waiter.wait(1000);
+        return this;
+    }
+
+    public InputForms clickAgeGroup5to15() {
+        ageGroup5to15.click();
+        return this;
+    }
+
+    public InputForms clickAgeGroup15to50() {
+        ageGroup15to50.click();
+        return this;
+    }
+
     //Assertions
 
-    //Exercise 1 - Simple Form Demo / Single Input Field. Positive test
+    //Exercise 1 - Simple Form Demo / Single Input Field. Positive test.
     public void assertThatMessageIsEqualWithTheExpected() {
         Reporter.log("I check if the received message is the same as the one declared");
         Assert.assertTrue(yourMessage.getText().equals(sentMessage));
     }
 
-    //Exercise 1 - Simple Form Demo / Single Input Field. Positive test. Placeholder
+    //Exercise 1 - Simple Form Demo / Single Input Field. Positive test. Placeholder.
     public void assertThatPlaceholderIsEqualWithTheExpected(String placeholder) {
         Reporter.log("I check if the placeholder is compatible with the expected one");
         Assert.assertEquals(enterMessageTextfield.getAttribute("placeholder"), placeholder);
     }
 
-    //Exercise 2 - Simple Form Demo / Two Input Fields. Positive and negative test. Correct (Integers) and incorrect (Strings) characters in inputs
+    //Exercise 2 - Simple Form Demo / Two Input Fields. Positive and negative test. Correct (Integers) and incorrect (Strings) characters in inputs.
     public void assertThatCorrectCharactersInInputs(String expectedValue) {
         Reporter.log("I check if after entering random inscriptions (String, number) on the inputs, we get the expected result");
         Assert.assertEquals(additionResult.getText(), expectedValue);
     }
 
-    //Exercise 2 - Simple Form Demo / Two Input Fields. Positive test. Placeholder
+    //Exercise 2 - Simple Form Demo / Two Input Fields. Positive test. Placeholder.
     public void assertThatPlaceholdersAreEqualsWithTheExpected(String placeholder) {
         Reporter.log("I check if the placeholder is compatible with the expected one");
         Assert.assertEquals(labelA.getAttribute("placeholder"), placeholder);
         Assert.assertEquals(labelB.getAttribute("placeholder"), placeholder);
     }
 
-    //Exercise 3 - Checkbox Demo / Single Checkbox Demo. Checkbox On
+    //Exercise 3 - Checkbox Demo / Single Checkbox Demo. Checkbox On.
     public void assertThatCheckboxOn(String staticMessage) {
         Reporter.log("I check if the checkbox is checked");
         Assert.assertTrue(singleChecbkox.isSelected());
         Assert.assertEquals(singleCheckBoxMessage.getText(), staticMessage);
     }
 
-    //Exercise 3 - Checkbox Demo / Single Checkbox Demo. Checkbox Off
+    //Exercise 3 - Checkbox Demo / Single Checkbox Demo. Checkbox Off.
     public void assertThatCheckboxOff(String atribute) {
         Reporter.log("I check if the checkbox is not checked");
         Assert.assertEquals(singleCheckBoxMessage.getAttribute("style"), atribute);
     }
 
-    //Exercise 4 - Checkbox Demo / Multiple Checkbox Demo. All checkboxes are selected
+    //Exercise 4 - Checkbox Demo / Multiple Checkbox Demo. All checkboxes are selected.
     public void assertThatAllCheckboxesOn() {
         Reporter.log("I check if all checkboxes are marked correctly");
         Assert.assertTrue(checkboxOption1.isSelected());
@@ -184,13 +272,13 @@ public class InputForms extends BasePage {
         Assert.assertTrue(checkboxOption4.isSelected());
     }
 
-    //Exercise 4 - Checkbox Demo / Multiple Checkbox Demo. Checks whether the button is correct depending on the configuration
+    //Exercise 4 - Checkbox Demo / Multiple Checkbox Demo. Checks whether the button is correct depending on the configuration.
     public void assertThatChecksIfTheButtonIsCorrect(String value) {
         Reporter.log("I check if the button is correct depending on the configuration");
         Assert.assertEquals(checkButton.getAttribute("value"), value);
     }
 
-    //Exercise 4 - Checkbox Demo / Multiple Checkbox Demo. Checks whether clicking "Check All" ticks all checkboxes
+    //Exercise 4 - Checkbox Demo / Multiple Checkbox Demo. Checks whether clicking "Check All" ticks all checkboxes.
     public void assertThatAllCheckboxesAreChecked() {
         Reporter.log("I check if all checkboxes are checked");
         Assert.assertTrue(checkboxOption1.isSelected());
@@ -199,7 +287,7 @@ public class InputForms extends BasePage {
         Assert.assertTrue(checkboxOption4.isSelected());
     }
 
-    //Exercise 4 - Checkbox Demo / Multiple Checkbox Demo. Checks if all checkboxes are unchecked after using the "Uncheck All" button
+    //Exercise 4 - Checkbox Demo / Multiple Checkbox Demo. Checks if all checkboxes are unchecked after using the "Uncheck All" button.
     public void assertThatAllCheckboxesAreUnchecked() {
         Reporter.log("I check if all checkboxes are unchecked");
         Assert.assertFalse(checkboxOption1.isSelected());
@@ -208,4 +296,15 @@ public class InputForms extends BasePage {
         Assert.assertFalse(checkboxOption4.isSelected());
     }
 
+    //Exercise 5 - Radio Buttons Demo / Radio Button Demo. Checks if RadioButton returns the expected message.
+    public void assertThatMessageIsEqualWithTheDeclared(String message) {
+        Reporter.log("I check if it returns the expected message");
+        Assert.assertTrue(radioButtonMessage.getText().equals(message));
+    }
+
+    //Exercise 5 - Radio Buttons Demo / Group Radio Buttons Demo. Checks if Get Value Button returns the expected message.
+    public void assertThatMessageFromGetValuesButtonIsEqualWithTheDeclared(String Sex) {
+        Reporter.log("I check if it returns the expected message");
+        Assert.assertEquals(SexAndAgeMessage, Sex);
+    }
 }

@@ -13,7 +13,10 @@ public class ListPage extends BasePage {
     private WebElement simpleFormDemo;
 
     @FindBy(css = "ul#treemenu ul > li:nth-child(1) > ul > li:nth-child(2) > a")
-    private WebElement CheckboxDemo;
+    private WebElement checkboxDemo;
+
+    @FindBy(css = "ul#treemenu ul > li:nth-child(1) > ul > li:nth-child(3) > a")
+    private WebElement radioButtonsDemo;
 
     public ListPage(WebDriver driver) {
         super(driver);
@@ -30,8 +33,13 @@ public class ListPage extends BasePage {
     }
 
     public ListPage clickOnCheckboxDemo() {
-        CheckboxDemo.click();
-        waiter.wait(5000);
+        checkboxDemo.click();
+        waiter.wait(2000);
+        return this;
+    }
+    public ListPage clickOnRadioButtonsDemo() {
+        radioButtonsDemo.click();
+        waiter.wait(2000);
         return this;
     }
 

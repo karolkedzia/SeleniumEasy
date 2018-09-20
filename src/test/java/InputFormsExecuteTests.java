@@ -3,7 +3,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 
-public class ExecuteTests extends BaseTest {
+public class InputFormsExecuteTests extends BaseTest {
 
     @DataProvider
     public Object[][] enterRandomValues() {
@@ -129,7 +129,7 @@ public class ExecuteTests extends BaseTest {
     }
 
     @Test(description = "Exercise 4 - Checkbox Demo / Multiple Checkbox Demo. Select checkbox 1 and check if the button has remained \"Check All\"")
-    public void multipleCheckboxDemoSelectedCheckboxoption1ButtonCheckAll() {
+    public void multipleCheckboxDemoSelectedCheckboxOption1ButtonCheckAll() {
         mainPage
                 .goToSeleniumMainPage()
                 .getListPage()
@@ -215,5 +215,47 @@ public class ExecuteTests extends BaseTest {
                 .clickCheckboxOption4()
                 .clickCheckboxOption2()
                 .assertThatChecksIfTheButtonIsCorrect("Check All");
+    }
+
+    @Test(description = "Exercise 5 - Radio Buttons Demo / Radio Button Demo. Checks if RadioButton returns the right message for Male RadioButton")
+    public void radioButtonDemoChecksRightMessageForMale() {
+        mainPage
+                .goToSeleniumMainPage()
+                .getListPage()
+                .clickOnInputForms()
+                .clickOnRadioButtonsDemo()
+                .getInputForms()
+                .clickRadioButtonMale()
+                .clickRadioButtoGet()
+                .assertThatMessageIsEqualWithTheDeclared("Radio button 'Male' is checked");
+
+    }
+
+    @Test(description = "Exercise 5 - Radio Buttons Demo / Radio Button Demo. Checks if RadioButton returns the right message for Female RadioButton")
+    public void radioButtonDemoChecksRightMessageForFemale() {
+        mainPage
+                .goToSeleniumMainPage()
+                .getListPage()
+                .clickOnInputForms()
+                .clickOnRadioButtonsDemo()
+                .getInputForms()
+                .clickRadioButtonFemale()
+                .clickRadioButtoGet()
+                .assertThatMessageIsEqualWithTheDeclared("Radio button 'Female' is checked");
+
+    }
+
+    @Test(description = "Exercise 6 - Radio Buttons Demo / Group Radio Buttons Demo. Checks if returns the correct answer after choosing radio buttons \"Male\", \"0 to 5\"")
+    public void radioButtonDemoChecksRightMessageForMaleAand0to5() {
+        mainPage
+                .goToSeleniumMainPage()
+                .getListPage()
+                .clickOnInputForms()
+                .clickOnRadioButtonsDemo()
+                .getInputForms()
+                .clickRadioButtonSexMale()
+                .clickAgeGroup0to5()
+                .clickGetValuesButton()
+                .assertThatMessageFromGetValuesButtonIsEqualWithTheDeclared("Sex : Male");
     }
 }
