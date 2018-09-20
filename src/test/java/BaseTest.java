@@ -1,7 +1,8 @@
 import Core.WebDriverFactory;
+import Pages.DatePickers;
 import Pages.ListPage;
 import Pages.MainPage;
-import Pages.WorkSpacePage;
+import Pages.InputForms;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -14,7 +15,8 @@ public class BaseTest {
     private WebDriverFactory webDriverFactory;
     protected MainPage mainPage;
     protected ListPage listPage;
-    protected WorkSpacePage workSpacePage;
+    protected InputForms inputForms;
+    protected DatePickers dataPickers;
 
     @BeforeMethod
     @Parameters(("browser"))
@@ -24,7 +26,8 @@ public class BaseTest {
 
         mainPage = new MainPage(driver);
         listPage = new ListPage(driver);
-        workSpacePage = new WorkSpacePage(driver);
+        inputForms = new InputForms(driver);
+        dataPickers = new DatePickers(driver);
     }
 
     @AfterMethod

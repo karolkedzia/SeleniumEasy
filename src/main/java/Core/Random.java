@@ -12,12 +12,9 @@ public class Random {
         return RandomStringUtils.randomAlphanumeric(100);
     }
 
-
-
-
-
-
-
+    public static double randomDouble() {
+        return (double) (Math.random() * 1000);
+    }
 //        this.random = random;
 //        value1 = (int) (Math.random() * 1000);
 //        value2 = (int) (Math.random() * 1000);
