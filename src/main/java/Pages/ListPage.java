@@ -18,6 +18,9 @@ public class ListPage extends BasePage {
     @FindBy(css = "ul#treemenu ul > li:nth-child(1) > ul > li:nth-child(3) > a")
     private WebElement radioButtonsDemo;
 
+    @FindBy(css = "li.tree-branch > ul > li:nth-of-type(1) > ul > li:nth-of-type(4) > a")
+    private WebElement selectDropdownList;
+
     public ListPage(WebDriver driver) {
         super(driver);
     }
@@ -37,9 +40,15 @@ public class ListPage extends BasePage {
         waiter.wait(2000);
         return this;
     }
+
     public ListPage clickOnRadioButtonsDemo() {
         radioButtonsDemo.click();
         waiter.wait(2000);
+        return this;
+    }
+
+    public ListPage clickOnselectDropdownList() {
+        selectDropdownList.click();
         return this;
     }
 

@@ -43,8 +43,23 @@ public class InputFormsExecuteTests extends BaseTest {
                         "Age group: 15 - 50"},
         };
     }
+
+    @DataProvider
+    public Object[][] enterTheDay() {
+        return new Object[][]{
+                {"Sunday", "Day selected :- Sunday"},
+                {"Monday", "Day selected :- Monday"},
+                {"Tuesday", "Day selected :- Tuesday"},
+                {"Wednesday", "Day selected :- Wednesday"},
+                {"Thursday", "Day selected :- Thursday"},
+                {"Friday", "Day selected :- Friday"},
+                {"Saturday", "Day selected :- Saturday"},
+                {"Please select", ""},
+        };
+    }
+
     @Test(description = "Exercise 1 - Simple Form Demo/ Single Input Field")
-    public void singleInputFieldCorrectDatas() {
+    public void singleInputFieldCorrectData() {
         mainPage
                 .goToSeleniumMainPage()
                 .getListPage()
@@ -280,5 +295,18 @@ public class InputFormsExecuteTests extends BaseTest {
                 .clickGetValueButton()
                 .assertThatMessageFromGetValuesButtonIsEqualWithTheDeclared(expectedMessage);
 
+    }
+
+    @Test(description = "Exercise 7 - Select Dropdown List / Select List Demo. Checks all available values from the list", dataProvider = "enterTheDay")
+    public void selectDropdownListChecksAllAvailableValuesFromTheList(String day, String expectedMessage) {
+        mainPage
+                .goToSeleniumMainPage()
+                .getListPage()
+                .clickOnInputForms()
+                .clickOnselectDropdownList()
+                .getInputForms()
+                .clickOnSelectList()
+                .choseValue(day)
+                .assertThatChecksAllAvailableValuesFromTheList(expectedMessage);
     }
 }

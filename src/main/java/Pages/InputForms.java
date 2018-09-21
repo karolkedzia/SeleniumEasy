@@ -87,6 +87,36 @@ public class InputForms extends BasePage {
     @FindBy(className = "groupradiobutton")
     private WebElement SexAndAgeMessage;
 
+    @FindBy(id = "select-demo")
+    private WebElement selectList;
+
+    @FindBy(xpath = "//*[@id=\"select-demo\"]/option[1]")
+    private WebElement disabledList;
+
+    @FindBy(xpath = "//*[@id=\"select-demo\"]/option[2]")
+    private WebElement sunday;
+
+    @FindBy(xpath = "//*[@id=\"select-demo\"]/option[3]")
+    private WebElement monday;
+
+    @FindBy(xpath = "//*[@id=\"select-demo\"]/option[4]")
+    private WebElement tuesday;
+
+    @FindBy(xpath = "//*[@id=\"select-demo\"]/option[5]")
+    private WebElement wednesday;
+
+    @FindBy(xpath = "//*[@id=\"select-demo\"]/option[6]")
+    private WebElement thursday;
+
+    @FindBy(xpath = "//*[@id=\"select-demo\"]/option[7]")
+    private WebElement friday;
+
+    @FindBy(xpath = "//*[@id=\"select-demo\"]/option[8]")
+    private WebElement saturday;
+
+    @FindBy(className = "selected-value")
+    private WebElement dayMessage;
+
     private String sentMessage;
 
     public InputForms(WebDriver driver) {
@@ -171,6 +201,11 @@ public class InputForms extends BasePage {
         return this;
     }
 
+    public InputForms clickOnSelectList() {
+        selectList.click();
+        return this;
+    }
+
     //Exercise 5 - Radio Buttons Demo /
 
     public InputForms clickRadioButtonMale() {
@@ -211,7 +246,6 @@ public class InputForms extends BasePage {
             default:
                 System.out.println("Wrong Values");
         }
-        waiter.wait(5000);
         return this;
     }
 
@@ -220,6 +254,37 @@ public class InputForms extends BasePage {
         return this;
     }
 
+    public InputForms choseValue(String day) {
+        switch (day) {
+            case "Sunday":
+                sunday.click();
+                break;
+            case "Monday":
+                monday.click();
+                break;
+            case "Tuesday":
+                tuesday.click();
+                break;
+            case "Wednesday":
+                wednesday.click();
+                break;
+            case "Thursday":
+                thursday.click();
+                break;
+            case "Friday":
+                friday.click();
+                break;
+            case "Saturday":
+                saturday.click();
+                break;
+            case "Please select":
+                disabledList.click();
+                break;
+            default:
+                System.out.println("No value has been selected");
+        }
+        return this;
+    }
 
     //Assertions
 
@@ -300,9 +365,16 @@ public class InputForms extends BasePage {
         Assert.assertTrue(radioButtonMessage.getText().equals(message));
     }
 
-    //Exercise 5 - Radio Buttons Demo / Group Radio Buttons Demo. Checks all combinations of sex and age radiobuttons.
+    //Exercise 6 - Radio Buttons Demo / Group Radio Buttons Demo. Checks all combinations of sex and age radiobuttons.
     public void assertThatMessageFromGetValuesButtonIsEqualWithTheDeclared(String expectedMessage) {
         Reporter.log("I check if it returns the expected message");
         Assert.assertEquals(SexAndAgeMessage.getText(), expectedMessage);
     }
+
+    //Exercise 7 - Select Dropdown List / Select List Demo. Checks all available values from the list.
+    public void assertThatChecksAllAvailableValuesFromTheList(String expectedMessage) {
+        Reporter.log("I check if it returns the expected message");
+        Assert.assertEquals(dayMessage.getText(), expectedMessage);
+    }
+
 }
