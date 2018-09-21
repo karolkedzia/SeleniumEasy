@@ -17,10 +17,32 @@ public class InputFormsExecuteTests extends BaseTest {
         return new Object[][]{
                 {String.valueOf(randomInt1), String.valueOf(randomInt2), String.valueOf(randomInt1 + randomInt2)},
                 {randomString1, randomString2, "NaN"},
-//                {String.valueOf(randomDouble1), String.valueOf(randomDouble2), String.valueOf(randomDouble1 + randomDouble2)},
+                {String.valueOf(randomDouble1), String.valueOf(randomDouble2), String.valueOf(randomDouble1 + randomDouble2)},
         };
     }
 
+    @DataProvider
+    public Object[][] enterCombinationOfValues() {
+        return new Object[][]{
+                {"Male", "0to5", "Sex : Male\n" +
+                        "Age group: 0 - 5"},
+
+                {"Male", "5to15", "Sex : Male\n" +
+                        "Age group: 5 - 15"},
+
+                {"Male", "15to50", "Sex : Male\n" +
+                        "Age group: 15 - 50"},
+
+                {"Female", "0to5", "Sex : Female\n" +
+                        "Age group: 0 - 5"},
+
+                {"Female", "5to15", "Sex : Female\n" +
+                        "Age group: 5 - 15"},
+                
+                {"Female", "15to50", "Sex : Female\n" +
+                        "Age group: 15 - 50"},
+        };
+    }
     @Test(description = "Exercise 1 - Simple Form Demo/ Single Input Field")
     public void singleInputFieldCorrectDatas() {
         mainPage
@@ -245,17 +267,18 @@ public class InputFormsExecuteTests extends BaseTest {
 
     }
 
-    @Test(description = "Exercise 6 - Radio Buttons Demo / Group Radio Buttons Demo. Checks if returns the correct answer after choosing radio buttons \"Male\", \"0 to 5\"")
-    public void radioButtonDemoChecksRightMessageForMaleAand0to5() {
+    @Test(description = "Exercise 6 - Radio Buttons Demo / Group Radio Buttons Demo. Checks all combinations of sex and age radiobuttons", dataProvider = "enterCombinationOfValues")
+    public void radioButtonDemoChecksRightMessageForMultiRadioButtons(String sex, String age, String expectedMessage) {
         mainPage
                 .goToSeleniumMainPage()
                 .getListPage()
                 .clickOnInputForms()
                 .clickOnRadioButtonsDemo()
                 .getInputForms()
-                .clickRadioButtonSexMale()
-                .clickAgeGroup0to5()
-                .clickGetValuesButton()
-                .assertThatMessageFromGetValuesButtonIsEqualWithTheDeclared("Sex : Male");
+                .choseCombinationSex(sex)
+                .choseCombinationAgess(age)
+                .clickGetValueButton()
+                .assertThatMessageFromGetValuesButtonIsEqualWithTheDeclared(expectedMessage);
+
     }
 }

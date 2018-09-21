@@ -58,10 +58,10 @@ public class InputForms extends BasePage {
     private WebElement radioButtonFemale;
 
     @FindBy(xpath = "//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/div[1]/label[1]")
-    private WebElement radioButtonSexMale;
+    private static WebElement radioButtonSexMale;
 
-    @FindBy(xpath = "//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/div[1]/label[2")
-    private WebElement radioButtonSexFemale;
+    @FindBy(xpath = "//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/div[1]/label[2]")
+    private static WebElement radioButtonSexFemale;
 
     @FindBy(id = "buttoncheck")
     private WebElement radioButtonGet;
@@ -82,14 +82,10 @@ public class InputForms extends BasePage {
     private WebElement ageGroup15to50;
 
     @FindBy(xpath = "//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/p[2]/text()[1]")
-    private WebElement SexValue;
-
-    @FindBy(css = "//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/p[2]/text()[2]")
-    private WebElement AgeGroupeValue;
+    private WebElement sexAgeMessage;
 
     @FindBy(className = "groupradiobutton")
     private WebElement SexAndAgeMessage;
-
 
     private String sentMessage;
 
@@ -192,36 +188,38 @@ public class InputForms extends BasePage {
         return this;
     }
 
-    public InputForms clickRadioButtonSexMale() {
-        radioButtonSexMale.click();
+    public InputForms choseCombinationSex(String sex) {
+        if (sex.equals("Male")) {
+            radioButtonSexMale.click();
+        } else if (sex.equals("Female")) {
+            radioButtonSexFemale.click();
+        }
         return this;
     }
 
-    public InputForms clickRadioButtonSexFemale() {
-        radioButtonSexFemale.click();
+    public InputForms choseCombinationAgess(String age) {
+        switch (age) {
+            case "0to5":
+                ageGroup0to5.click();
+                break;
+            case "5to15":
+                ageGroup5to15.click();
+                break;
+            case "15to50":
+                ageGroup15to50.click();
+                break;
+            default:
+                System.out.println("Wrong Values");
+        }
+        waiter.wait(5000);
         return this;
     }
 
-    public InputForms clickGetValuesButton() {
+    public InputForms clickGetValueButton() {
         getValueButton.click();
         return this;
     }
 
-    public InputForms clickAgeGroup0to5() {
-        ageGroup0to5.click();
-        waiter.wait(1000);
-        return this;
-    }
-
-    public InputForms clickAgeGroup5to15() {
-        ageGroup5to15.click();
-        return this;
-    }
-
-    public InputForms clickAgeGroup15to50() {
-        ageGroup15to50.click();
-        return this;
-    }
 
     //Assertions
 
@@ -302,9 +300,9 @@ public class InputForms extends BasePage {
         Assert.assertTrue(radioButtonMessage.getText().equals(message));
     }
 
-    //Exercise 5 - Radio Buttons Demo / Group Radio Buttons Demo. Checks if Get Value Button returns the expected message.
-    public void assertThatMessageFromGetValuesButtonIsEqualWithTheDeclared(String Sex) {
+    //Exercise 5 - Radio Buttons Demo / Group Radio Buttons Demo. Checks all combinations of sex and age radiobuttons.
+    public void assertThatMessageFromGetValuesButtonIsEqualWithTheDeclared(String expectedMessage) {
         Reporter.log("I check if it returns the expected message");
-        Assert.assertEquals(SexAndAgeMessage, Sex);
+        Assert.assertEquals(SexAndAgeMessage.getText(), expectedMessage);
     }
 }
